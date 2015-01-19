@@ -47,9 +47,9 @@ p "Addition"
 print "test1: "
 result = calc.addition(2,3)
 if result == 5
-	print "OK"
+	p "OK"
 else 
-	print "FAIL"
+	p "FAIL"
 end
 
 print "test2: "
@@ -60,7 +60,7 @@ else
 	p "FAIL"
 end
 
-p "Substraction"
+p "\nSubstraction"
 print "test3: "
 result = calc.substraction(2,3)
 if result == -1
@@ -77,7 +77,7 @@ else
 	p "FAIL"
 end
 
-p "Multiplication"
+p "\nMultiplication"
 print "test5: "
 result = calc.multiplication(2,3)
 if result == 6
@@ -94,7 +94,7 @@ else
 	p "FAIL"
 end
 
-p "Division"
+p "\nDivision"
 print "test7: "
 result = calc.division(2,3)
 if result == 0
