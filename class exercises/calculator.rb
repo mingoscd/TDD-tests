@@ -42,66 +42,71 @@ end
 
 p "==CALCULATOR TESTS=="
 calc = Calculator.new
+
+p "Addition"
 print "test1: "
 result = calc.addition(2,3)
 if result == 5
-	print "OK\n"
+	print "OK"
 else 
-	print "FAIL\n"
+	print "FAIL"
 end
 
 print "test2: "
 result = calc.addition("hello",3)
 if result == "NaN"
-	print "OK\n"
+	p "OK"
 else 
-	print "FAIL\n"
+	p "FAIL"
 end
 
+p "Substraction"
 print "test3: "
 result = calc.substraction(2,3)
 if result == -1
-	print "OK\n"
+	p "OK"
 else 
-	print "FAIL\n"
+	p "FAIL"
 end
 
 print "test4: "
 result = calc.substraction([],3)
 if result == "NaN"
-	print "OK\n"
+	p "OK"
 else 
-	print "FAIL\n"
+	p "FAIL"
 end
 
+p "Multiplication"
 print "test5: "
 result = calc.multiplication(2,3)
 if result == 6
-	print "OK\n"
+	p "OK"
 else 
-	print "FAIL\n"
+	p "FAIL"
 end
 
 print "test6: "
 result = calc.multiplication({},3)
 if result == "NaN"
-	print "OK\n"
+	p "OK"
 else 
-	print "FAIL\n"
+	p "FAIL"
 end
 
+p "Division"
 print "test7: "
 result = calc.division(2,3)
 if result == 0
-	print "OK\n"
+	p "OK"
 else 
-	print "FAIL\n"
+	p "FAIL"
 end
 
 print "test8: "
 result = calc.division(:symbol,3)
 if result == "NaN"
-	print "OK\n"
+	p "OK"
 else 
-	print "FAIL\n"
+	p "FAIL"
 end
