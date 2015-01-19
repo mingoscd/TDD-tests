@@ -40,73 +40,52 @@ class Calculator
 
 end
 
-p "==CALCULATOR TESTS=="
-calc = Calculator.new
-
-p "Addition"
-print "test1: "
-result = calc.addition(2,3)
-if result == 5
-	p "OK"
-else 
-	p "FAIL"
+def assert(result, expectation)
+	if result == expectation
+		p "OK"
+	else 
+		p "FAIL"
+	end
 end
 
-print "test2: "
-result = calc.addition("hello",3)
-if result == "NaN"
-	p "OK"
-else 
-	p "FAIL"
-end
+describe Calculator do
+	before do
+		@calculator = Calculator.new
+	end
 
-p "\nSubstraction"
-print "test3: "
-result = calc.substraction(2,3)
-if result == -1
-	p "OK"
-else 
-	p "FAIL"
-end
+	describe "#addition" do 
+		it "should add 5 and 6" do
+			expect(@calculator.addition(5,6)).to eq(11)
+		end
+		it "add string, should be error" do
+			expect(@calculator.addition("hello",6)).to eq("NaN")
+		end
+	end
 
-print "test4: "
-result = calc.substraction([],3)
-if result == "NaN"
-	p "OK"
-else 
-	p "FAIL"
-end
+	describe "#substraction" do 
+		it "should less 5 and 6" do
+			expect(@calculator.substraction(5,6)).to eq(-1)
+		end
+		it "less string, should be error" do
+			expect(@calculator.substraction("hello",6)).to eq("NaN")
+		end
+	end
 
-p "\nMultiplication"
-print "test5: "
-result = calc.multiplication(2,3)
-if result == 6
-	p "OK"
-else 
-	p "FAIL"
-end
+	describe "#multiplication" do 
+		it "should multiplicate 5 and 6" do
+			expect(@calculator.multiplication(5,6)).to eq(30)
+		end
+		it "multiplicate string, should be error" do
+			expect(@calculator.multiplication("hello",6)).to eq("NaN")
+		end
+	end
 
-print "test6: "
-result = calc.multiplication({},3)
-if result == "NaN"
-	p "OK"
-else 
-	p "FAIL"
-end
-
-p "\nDivision"
-print "test7: "
-result = calc.division(2,3)
-if result == 0
-	p "OK"
-else 
-	p "FAIL"
-end
-
-print "test8: "
-result = calc.division(:symbol,3)
-if result == "NaN"
-	p "OK"
-else 
-	p "FAIL"
+	describe "#division" do 
+		it "should divide 5 and 6" do
+			expect(@calculator.division(5,6)).to eq(0)
+		end
+		it "divide string, should be error" do
+			expect(@calculator.division("hello",6)).to eq("NaN")
+		end
+	end
 end
