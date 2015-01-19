@@ -110,3 +110,24 @@ if result == "NaN"
 else 
 	p "FAIL"
 end
+
+
+
+#### class SOLUTION ####
+
+#more short method to test.
+
+def assert(result, expectation)
+	if result == expectation
+		puts "OK"
+	else 
+		puts "FAIL"
+	end
+end
+
+
+
+assert(calculator.addition(5,6), 11)
+
+
+
