@@ -17,37 +17,56 @@
 # Upgrade: use IMDB Ruby gem to remove arbitrarity!
 
 class SeriesMasterOfTheUniverse 
+  
+    RATINGS = {
 
-  def best_serie_2014(array)
-    if array.is_a?(Array)
-      return array.first
-    end
+    "Game of Thrones" => 10, 
+    "The Knick" => 8, 
+    "Halt and Catch Fire" => 9, 
+    "Aida" => 0
+  }
+
+  def best_serie_2014
+    sorted_shows(RATINGS.keys).first
+    
   end
 
-  def worst_serie_2014(array)
-    if array.is_a?(Array)
-      return array.last
+  def worst_serie_2014
+    sorted_shows(RATINGS.keys).last
+  end
+
+private
+
+  def sort_series
+   RATINGS.sort do |show_name|
+      RATINGS[show_name]
     end
   end
 
 end
 
 
+#### TEST RSPEC ####
 describe SeriesMasterOfTheUniverse do
   before do 
     @abc = SeriesMasterOfTheUniverse.new
+    
   end
 
   describe "best_serie_2014" do 
     it "should return the best serie" do
-      expect(@abc.best_serie_2014(["Game of Thrones", "The Knick", "Halt and Catch fire", "Aida"])).to eq("Game of Thrones") 
+      expect(@abc.best_serie_2014(@sorted_ratings)).to eq("Game of Thrones") 
     end
   end
 
   describe "worst_serie_2014" do
     it "should return the worst serie" do
-      expect(@abc.worst_serie_2014(["Game of Thrones", "The Knick", "Halt and Catch fire", "Aida"])).to eq("Aida")
+      expect(@abc.worst_serie_2014(@sorted_ratings).to eq("Aida")
     end
   end
 
 end
+
+
+# abc = SeriesMasterOfTheUniverse.new
+# print abc.sort_series_by_value
