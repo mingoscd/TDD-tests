@@ -41,8 +41,32 @@ class Numbermaster
   end
 
   def return_array(*numbers)
-    [12, 7.5, 7, 4]
+    
+    [
+      get_mode(*numbers),
+      numbers.reduce(:+)/numbers.length,
+      get_median(*numbers),
+      numbers.length
+    ]
   end
+
+  def get_median (*numbers)
+
+    if (numbers.length.even?) 
+      fnumber = ((numbers[(numbers.length/2)-1]).to_f + (numbers[numbers.length/2])).to_f
+      fnumber = fnumber/2
+
+    else 
+      return numbers[numbers.length/2]
+    end
+  end
+
+  def get_mode(*numbers)
+
+    freq = numbers.inject(Hash.new(0)) { |key,value| key[value] += 1; key }
+    numbers.max_by { |number| freq[number] }
+  end
+
 
   def fibonacci_number(number)
     21
@@ -80,7 +104,7 @@ describe Numbermaster do
   describe "return_array" do
     it "returns an array with mode, median, mean and length" do
       test = @nMaster.return_array(1, 3, 12, 12)
-      expect(test).to eq([12, 7.5, 7, 4])
+      expect(test).to eq([12, 7, 7.5, 4])
     end
     it "returns nil if the array is empty" do
       test = @nMaster.return_array([])
