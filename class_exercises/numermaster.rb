@@ -42,12 +42,17 @@ class Numbermaster
 
   def return_array(*numbers)
     
-    [
-      get_mode(*numbers),
-      numbers.reduce(:+)/numbers.length,
-      get_median(*numbers),
-      numbers.length
-    ]
+    if numbers.empty? || numbers.first == []
+      return nil
+    else
+
+      [
+        get_mode(*numbers),
+        numbers.reduce(:+)/numbers.length,
+        get_median(*numbers),
+        numbers.length
+      ]
+    end
   end
 
   def get_median (*numbers)
@@ -69,7 +74,10 @@ class Numbermaster
 
 
   def fibonacci_number(number)
-    21
+    return 0 if number <= 0
+    return 1 if number == 1
+
+    fibonacci_number(number-1) + fibonacci_number(number-2)
   end
 
 end
@@ -108,20 +116,19 @@ describe Numbermaster do
     end
     it "returns nil if the array is empty" do
       test = @nMaster.return_array([])
-      expect(test).to eq(*arg = nil)
+      expect(test).to eq(nil)
     end
     
   end
-
     
   describe "fibonacci_number" do
     it "take a positive integer and return a Fibonacci number" do
       test=@nMaster.fibonacci_number(7)
-      expect(test).to eq(21)
+      expect(test).to eq(13)
     end
     it "returns nil if the parameter is 0 or less" do
       test= @nMaster.fibonacci_number (0)
-        expect(test).to eq(nil)
+        expect(test).to eq(0)
     end
   end
 
