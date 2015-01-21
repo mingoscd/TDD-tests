@@ -18,41 +18,26 @@ set :port, 3000
 set :bind, '0.0.0.0'
 
 songs = [{ name: "hello", artist: "world"}]
-# app = Spotinatra.new
 
 get '/' do
-	app.songs_list(songs)
+	content = ""
+	content << "<ul>"
+	songs.each { |song|  content << "<li>" + song[:name] + " - " + song[:artist] + "</li>" }
+	content << "</ul>"
+	content
 end
 
 get '/enough' do
-	app.enough
+	"Stop adding songs"
 end
 
 post '/songs/new' do
-	app.add_song(params)
+	name = params[:name]
+	artist = params[:artist]
+
+	redirect('/enough') if songs.size == 10
+
+	songs << { name: name, artist: artist }
+	redirect('/')
 end
 
-class Spotinatra
-	def songs_list(songs)
-		content = ""
-		content << "<ul>"
-		songs.each { |song|  content << "<li>" + song[:name] + " - " + song[:artist] + "</li>" }
-		content << "</ul>"
-		content
-	end
-
-	def add_song(params)
-		name = params[:name]
-	  	artist = params[:artist]
-
-		redirect('/enough') if songs.size == 10
-
-		songs << { name: name, artist: artist }
-		redirect('/')
-	end
-
-	def enough
-		"Stop adding songs"
-	end
-end
-app = Spotinatra.new
